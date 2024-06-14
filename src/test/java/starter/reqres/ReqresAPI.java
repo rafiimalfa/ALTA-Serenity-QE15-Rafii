@@ -12,6 +12,7 @@ public class ReqresAPI {
     public static String CREATE_USER = Constants.BASE_URL+"/api/users";
     public static String USER_WITH_IDs = Constants.BASE_URL+"/api/users/{idUser}";
     public static String LOGIN_SUCCESS = Constants.BASE_URL+"/api/login";
+    public static String USER_REGISTER = Constants.BASE_URL+"/api/register";
 
     @Step("Get list users")
     public void getListUsers(int page){
@@ -24,7 +25,7 @@ public class ReqresAPI {
                 .body(json);
     }
     @Step("Update user")
-    public void putUpdateUser(int id, File json){
+    public void putAndPatchUpdateUser(int id, File json){
         SerenityRest.given()
                 .pathParam("idUser", id)
                 .contentType(ContentType.JSON)
@@ -37,6 +38,10 @@ public class ReqresAPI {
     }
     @Step("Login success")
     public void postLoginSuccess(File json){
+        SerenityRest.given().contentType(ContentType.JSON).body(json);
+    }
+    @Step("User register")
+    public void postUserRegister(File json){
         SerenityRest.given().contentType(ContentType.JSON).body(json);
     }
 

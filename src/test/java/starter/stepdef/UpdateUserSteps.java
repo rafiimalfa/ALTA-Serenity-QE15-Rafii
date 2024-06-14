@@ -16,11 +16,16 @@ public class UpdateUserSteps {
     @Given("Update user with parameter id {int} and valid json {string}")
     public void updateUserWithParameterIdAndValidJson(int id, String jsonFileName) {
         File jsonFile = new File(Constants.REQ_BODY+jsonFileName);
-        reqresAPI.putUpdateUser(id, jsonFile);
+        reqresAPI.putAndPatchUpdateUser(id, jsonFile);
     }
 
     @When("Send request put update user")
     public void sendRequestPutUpdateUser() {
         SerenityRest.when().put(ReqresAPI.USER_WITH_IDs);
+    }
+
+    @When("Send request patch update user")
+    public void sendRequestPatchUpdateUser() {
+        SerenityRest.when().patch(ReqresAPI.USER_WITH_IDs);
     }
 }
