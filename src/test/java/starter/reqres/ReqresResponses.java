@@ -8,4 +8,6 @@ public class ReqresResponses {
     public static String ID = "data.id";
     public static String EMAIL = "data.email";
     public static String NULL = "";
+    public static String EMAIL_REGISTER = "email";
+    public static String PASSWORD = "password";
 }

@@ -71,6 +71,11 @@ public class ReqresAPI {
     public void getsingleuserstring(String id){
         SerenityRest.given().pathParam("id", id);
     }
-
-
+    @Step("Update User String")
+    public void patchUpdateuserString(String id, File json){
+        SerenityRest.given()
+                .pathParam("idUser", id)
+                .contentType(ContentType.JSON)
+                .body(json);
+    }
 }

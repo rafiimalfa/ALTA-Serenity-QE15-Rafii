@@ -19,7 +19,7 @@ Feature: Login User
     When Send request post login user
     Then Status code should be 400
     And Response body error should be "<error>"
-    And Validate json schema "login_emptypass_json_schema.json"
+    And Validate json schema "login_error_json_schema.json"
     Examples:
       | fileName                     |  error           |
       | login_unregisteredacc1.json  |  user not found  |
@@ -30,11 +30,12 @@ Feature: Login User
     Given Input user with file json "<fileName>"
     When Send request post login user
     Then Status code should be 400
-    And Response body error should be "<error>"
-    And Validate json schema "login_emptypass_json_schema.json"
+    And Response body error should be "Missing email or username"
+    And Validate json schema "login_error_json_schema.json"
     Examples:
-      | fileName               |  error                               |
-      | login_emptyemail.json  |  Missing email or username           |
+      | fileName               |
+      | login_emptyemail.json  |
+      | login_emptyemail1.json |
 
 
 
@@ -43,30 +44,31 @@ Feature: Login User
     Given Input user with file json "<fileName>"
     When Send request post login user
     Then Status code should be 400
-    And Response body error should be "<error>"
-    And Validate json schema "login_emptypass_json_schema.json"
+    And Response body error should be "Missing password"
+    And Validate json schema "login_error_json_schema.json"
     Examples:
-      | fileName              |  error                      |
-      | login_emptypass.json  |  Missing password           |
+      | fileName              |
+      | login_emptypass.json  |
+      | login_emptypass1.json |
 
     @Tugas
     Scenario Outline: login with empty email and password
       Given Input user with file json "<fileName>"
       When Send request post login user
       Then Status code should be 400
-      And Response body error should be "<error>"
-      And Validate json schema "login_emptypass_json_schema.json"
+      And Response body error should be "Missing email or username"
+      And Validate json schema "login_error_json_schema.json"
       Examples:
-        | fileName                    |  error                       |
-        | login_emptypassandemail.json|  Missing email or username   |
-
+        | fileName                     |
+        | login_emptypassandemail.json |
+        | login_emptypassandemail1.json|
   @Tugas
   Scenario Outline: Login with special character
     Given Input user with file json "<fileName>"
     When Send request post login user
     Then Status code should be 400
-    And Response body error should be "<error>"
-    And Validate json schema "login_emptypass_json_schema.json"
+    And Response body error should be "user not found"
+    And Validate json schema "login_error_json_schema.json"
     Examples:
-      | fileName                     |  error                 |
-      | login_specialcharacter.json  |  user not found        |
+      | fileName                     |
+      | login_specialcharacter.json  |

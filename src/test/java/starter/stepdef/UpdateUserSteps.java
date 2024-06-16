@@ -28,4 +28,11 @@ public class UpdateUserSteps {
     public void sendRequestPatchUpdateUser() {
         SerenityRest.when().patch(ReqresAPI.USER_WITH_IDs);
     }
+
+
+    @Given("Update user with parameter id {string} and valid json {string}")
+    public void updateUserWithParameterIdAndValidJson(String id, String fileName) {
+        File jsonFile = new File(Constants.REQ_BODY+fileName);
+        reqresAPI.patchUpdateuserString(id, jsonFile);
+    }
 }
