@@ -12,7 +12,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 import java.io.File;
 
-public class LoginSuccessSteps {
+public class LoginSteps {
     @Steps
     ReqresAPI reqresAPI;
 

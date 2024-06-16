@@ -19,11 +19,11 @@ Feature: Login User
     When Send request post login user
     Then Status code should be 400
     And Response body error should be "<error>"
-    And Validate json schema "<jsonschema>"
+    And Validate json schema "login_emptypass_json_schema.json"
     Examples:
-      | fileName                     |  error                | jsonschema                        |
-      | login_unregisteredacc1.json  |  user not found       | login_emptypass_json_schema.json  |
-      | login_unregisteredacc2.json  |  user not found       | login_emptypass_json_schema.json  |
+      | fileName                     |  error           |
+      | login_unregisteredacc1.json  |  user not found  |
+      | login_unregisteredacc2.json  |  user not found  |
 
   @Tugas
   Scenario Outline: Login with empty email
@@ -31,21 +31,12 @@ Feature: Login User
     When Send request post login user
     Then Status code should be 400
     And Response body error should be "<error>"
-    And Validate json schema "<jsonschema>"
+    And Validate json schema "login_emptypass_json_schema.json"
     Examples:
-      | fileName               |  error                               | jsonschema                        |
-      | login_emptyemail.json  |  Missing email or username           | login_emptypass_json_schema.json  |
+      | fileName               |  error                               |
+      | login_emptyemail.json  |  Missing email or username           |
 
-  @Tugas
-  Scenario Outline: Login with special character
-    Given Input user with file json "<fileName>"
-    When Send request post login user
-    Then Status code should be 400
-    And Response body error should be "<error>"
-    And Validate json schema "<jsonschema>"
-    Examples:
-      | fileName                     |  error                 | jsonschema                        |
-      | login_specialcharacter.json  |  user not found        | login_emptypass_json_schema.json  |
+
 
   @Tugas
   Scenario Outline: Login with empty password
@@ -53,10 +44,10 @@ Feature: Login User
     When Send request post login user
     Then Status code should be 400
     And Response body error should be "<error>"
-    And Validate json schema "<jsonschema>"
+    And Validate json schema "login_emptypass_json_schema.json"
     Examples:
-      | fileName              |  error                      | jsonschema                        |
-      | login_emptypass.json  |  Missing password           | login_emptypass_json_schema.json  |
+      | fileName              |  error                      |
+      | login_emptypass.json  |  Missing password           |
 
     @Tugas
     Scenario Outline: login with empty email and password
@@ -64,10 +55,10 @@ Feature: Login User
       When Send request post login user
       Then Status code should be 400
       And Response body error should be "<error>"
-      And Validate json schema "<jsonschema>"
+      And Validate json schema "login_emptypass_json_schema.json"
       Examples:
-        | fileName                    |  error                       | jsonschema                        |
-        | login_emptypassandemail.json|  Missing email or username   | login_emptypass_json_schema.json  |
+        | fileName                    |  error                       |
+        | login_emptypassandemail.json|  Missing email or username   |
 
   @Tugas
   Scenario Outline: Login with special character
@@ -75,7 +66,7 @@ Feature: Login User
     When Send request post login user
     Then Status code should be 400
     And Response body error should be "<error>"
-    And Validate json schema "<jsonschema>"
+    And Validate json schema "login_emptypass_json_schema.json"
     Examples:
-      | fileName                     |  error                 | jsonschema                        |
-      | login_specialcharacter.json  |  user not found        | login_emptypass_json_schema.json  |
+      | fileName                     |  error                 |
+      | login_specialcharacter.json  |  user not found        |

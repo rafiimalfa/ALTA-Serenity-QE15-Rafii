@@ -9,3 +9,14 @@ Feature: Get List User API
     | page  |
     | 1     |
     | 2     |
+
+    @Tugas
+  Scenario Outline: Get list users with special character
+    Given Get list users with parameter "<page>"
+    When Send request get list users
+    Then Status code should be 400
+    Examples:
+      | page   |
+      | #$^*(  |
+      | &*^%$  |
+

@@ -26,5 +26,8 @@ public class ListUsersSteps {
         SerenityRest.when().get(ReqresAPI.LIST_USERS);
     }
 
-
+    @Given("Get list users with parameter {string}")
+    public void getListUsersWithParameter(String page) {
+        reqresAPI.getListUsersString(page);
+    }
 }
